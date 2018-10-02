@@ -1,8 +1,8 @@
-$fn=240;              // Smooth cylinders
+$fn=400;              // Smooth cylinders
 
 height    =  60;
-width     = 162.4;
-thickness =   4;
+width     = 164.4;
+thickness =   6;
 
 z = 170; //166
 h = 260/2;
@@ -11,13 +11,15 @@ w = h * 36/24;
 
 
 
+difference()
+{
 union()
 {
 difference()
 {
   union()
   {
-    rotate_extrude(angle=360,convexity=10) polygon(points=[[(width-thickness)/2,10],[(width-thickness)/2,13],[-0.5+(width-thickness)/2,10.5],[(width-thickness)/2,10]]);
+    rotate_extrude(angle=360,convexity=10) polygon(points=[[(width-thickness)/2,10],[(width-thickness)/2,13],[-1.0+(width-thickness)/2,11.0],[(width-thickness)/2,10]]);
     braces();
     cylinder(r = width/2, h=10);
   }
@@ -72,6 +74,9 @@ difference()
   clamp_holes();
 }
 }
+// The following line creates a sectioned view
+// translate([-100,0,0])cube(size = [200,100,100], center = false);
+}
 
 //construction();
 
@@ -112,7 +117,7 @@ module clamp_hole()
 module brace ()
 {
   step = 0.0001;
-  brace_thickness = 3;
+  brace_thickness = 2;
   hull()
   {
     rotate([0,0,-a30])rotate_extrude(angle=2*a30,convexity=10)polygon(points=[[r2+step,0],[r2+step,10],[r2,10],[r2,0]]);
